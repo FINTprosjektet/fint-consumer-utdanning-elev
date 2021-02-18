@@ -4,16 +4,16 @@ import no.fint.consumer.status.StatusCache
 import no.fint.consumer.utils.RestEndpoints
 import org.apache.commons.io.IOUtils
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.context.embedded.LocalServerPort
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
+import org.springframework.boot.web.server.LocalServerPort
 import org.springframework.core.io.ClassPathResource
 import org.springframework.http.*
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.web.util.UriComponentsBuilder
 import spock.lang.Specification
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = [ "logging.level.no.fint.consumer.models=TRACE" ])
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = ["logging.level.no.fint.consumer.models=TRACE"])
 @ActiveProfiles("test")
 class ElevControllerSpec extends Specification {
     @LocalServerPort
@@ -50,7 +50,7 @@ class ElevControllerSpec extends Specification {
         result.getStatusCode() == HttpStatus.ACCEPTED
 
         when:
-        def corrid = location.path.substring(location.path.lastIndexOf('/')+1)
+        def corrid = location.path.substring(location.path.lastIndexOf('/') + 1)
         def event = statusCache.get(corrid)
         println(corrid)
         println(event.data)
